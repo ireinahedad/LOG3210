@@ -1,0 +1,16 @@
+  Program
+   AssignStmt
+    Identifier
+    Compare
+     Parentheses
+      Addition
+       Identifier
+       Multi
+        Identifier
+        Identifier
+     Parentheses
+      Soustraction
+       Division
+        Identifier
+        Identifier
+       Identifier

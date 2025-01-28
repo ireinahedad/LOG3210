@@ -1,0 +1,9 @@
+  Program
+   AssignStmt
+    Identifier
+    Addition
+     IntValue
+     Division
+      Not
+       Identifier
+      IntValue

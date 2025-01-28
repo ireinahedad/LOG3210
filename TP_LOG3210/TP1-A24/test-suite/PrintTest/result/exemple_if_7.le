@@ -1,0 +1,17 @@
+  Program
+   IfStmt
+    IntValue
+    AssignStmt
+     Identifier
+     IntValue
+    IfStmt
+     IntValue
+     AssignStmt
+      Identifier
+      IntValue
+     AssignStmt
+      Identifier
+      IntValue
+     AssignStmt
+      Identifier
+      IntValue

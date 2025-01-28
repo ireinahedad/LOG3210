@@ -1,0 +1,10 @@
+  Program
+   WhileStmt
+    WhileCond
+     IntValue
+     AssignStmt
+      Identifier
+      IntValue
+     AssignStmt
+      Identifier
+      IntValue

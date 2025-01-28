@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\test",
+    "\\test-suite",
+    "\\test-suite\\PrintTest",
+    "\\test-suite\\PrintTest\\result",
+    "\\test\\analyzer"
+  ],
+  "SelectedNode": "\\test-suite\\PrintTest\\result",
+  "PreviewInSolutionExplorer": false
+}
