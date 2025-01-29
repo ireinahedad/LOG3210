@@ -6,11 +6,12 @@ public interface ParserVisitor
   public Object visit(SimpleNode node, Object data);
   public Object visit(ASTProgram node, Object data);
   public Object visit(ASTAssignStmt node, Object data);
+  public Object visit(ASTFunctionStmt node, Object data);
+  public Object visit(ASTReturnStmt node, Object data);
   public Object visit(ASTIdentifier node, Object data);
   public Object visit(ASTIntValue node, Object data);
   public Object visit(ASTRealValue node, Object data);
   public Object visit(ASTWhileStmt node, Object data);
-  public Object visit(ASTWhileCond node, Object data);
   public Object visit(ASTDoWhileStmt node, Object data);
   public Object visit(ASTIfStmt node, Object data);
   public Object visit(ASTForStmt node, Object data);
@@ -24,4 +25,4 @@ public interface ParserVisitor
   public Object visit(ASTCompare node, Object data);
   public Object visit(ASTLogic node, Object data);
 }
-/* JavaCC - OriginalChecksum=44e909455845d89be601cf279ecd65ae (do not edit this line) */
+/* JavaCC - OriginalChecksum=9514c0aae3239901d0b2f74f74102d9b (do not edit this line) */

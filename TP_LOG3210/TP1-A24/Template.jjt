@@ -125,7 +125,6 @@ TOKEN :
 	< COMMA: "," > |
 	< #AND: "&&" > |
 	< #OR: "||" >
-	// À compléter au besoin
 }
 
 
@@ -155,15 +154,27 @@ ASTProgram Program() : { }
 	Block() <EOF> { return jjtThis;  }
 }
 
+
+
 void Block() #void : { }
 {
 	 ( Stmt() )*
 }
 
 
+
 void Stmt() #void : { }
 {
-AssignStmt() <SEMICOLON> |
+    LOOKAHEAD(3)AssignStmt() <SEMICOLON> |
+    WhileStmt() |
+    DoWhileStmt() <SEMICOLON> |
+    IfStmt() |
+    FunctionStmt() |
+    ForStmt()
+}
+
+void Content() #void : { }
+{
     WhileStmt() |
     DoWhileStmt() <SEMICOLON> |
     IfStmt() |
@@ -178,15 +189,41 @@ void AssignStmt() : { Token t;}
 
 void Expr() #void : {}
 {
-    //BasicExpr()
+   // BasicExpr()
     LogicExpr()
 }
 
 void BasicExpr() #void : {}
 {
-	LOOKAHEAD(2) Identifier() |
+	Identifier() |
 	IntValue() |
     RealValue()
+}
+
+void FunctionStmt() #void: {}
+{
+    <FUNC>#FunctionStmt Identifier() FunctionArgs()
+    <LACC>
+    (Stmt())? ReturnStmt()
+    <RACC>
+}
+
+void FunctionArgs() #void : {}
+{
+<LPAREN> (ArgumentList() <RPAREN> | <RPAREN> )
+}
+
+
+void ReturnStmt() #void: {}
+{
+ (<RET>#ReturnStmt LogicExpr() <SEMICOLON>)?
+}
+
+
+
+void ArgumentList() #void : {}
+{
+    BasicExpr() ( <COMMA> Identifier() )*
 }
 
 
@@ -208,15 +245,6 @@ void RealValue() : { Token t;}
 }
 
 // 2.1
-/*
-void WhileStmt() : { Token t; }
-{
-<WHILE> <LPAREN> Expr() <RPAREN>
-(<LACC> Block() <RACC>
-|
-Stmt())
-}
-*/
 
 void WhileStmt() : { Token t; }
 {
@@ -225,7 +253,6 @@ void WhileStmt() : { Token t; }
     |
     Stmt())
 }
-
 
 void DoWhileStmt() : { Token t; }
 {
@@ -238,8 +265,9 @@ void DoWhileStmt() : { Token t; }
 void IfStmt(): {}
 {
     <IF> <LPAREN> Expr() <RPAREN> (<LACC> Block() <RACC> | Stmt())
-    [LOOKAHEAD(2) <ELSE> (<LACC> Block() <RACC> | Stmt())]
+    [LOOKAHEAD(2) <ELSE> (<LACC> Block() <RACC> | Stmt())] <SEMICOLON>
 }
+
 
 // 2.3
 void ForStmt(): {}
@@ -253,7 +281,10 @@ void ParenthesisExpr() #void: {}
 {
     <LPAREN> LogicExpr()#Parentheses <RPAREN> |
     BasicExpr()
+
 }
+
+
 
 void NotExpr() #void: {}
 {
@@ -294,5 +325,6 @@ void CompareExpr() #void: {}
 
 void LogicExpr() #void: {}
 {
-    (CompareExpr() (<LOGIC> CompareExpr())*)#Logic(>1)
+    (CompareExpr() (<LOGIC> CompareExpr())?)#Logic(>1)
+
 }

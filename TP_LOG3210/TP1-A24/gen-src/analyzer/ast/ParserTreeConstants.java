@@ -6,34 +6,36 @@ public interface ParserTreeConstants
   public int JJTPROGRAM = 0;
   public int JJTVOID = 1;
   public int JJTASSIGNSTMT = 2;
-  public int JJTIDENTIFIER = 3;
-  public int JJTINTVALUE = 4;
-  public int JJTREALVALUE = 5;
-  public int JJTWHILESTMT = 6;
-  public int JJTWHILECOND = 7;
-  public int JJTDOWHILESTMT = 8;
-  public int JJTIFSTMT = 9;
-  public int JJTFORSTMT = 10;
-  public int JJTPARENTHESES = 11;
-  public int JJTNOT = 12;
-  public int JJTMINUS = 13;
-  public int JJTMULTI = 14;
-  public int JJTDIVISION = 15;
-  public int JJTADDITION = 16;
-  public int JJTSOUSTRACTION = 17;
-  public int JJTCOMPARE = 18;
-  public int JJTLOGIC = 19;
+  public int JJTFUNCTIONSTMT = 3;
+  public int JJTRETURNSTMT = 4;
+  public int JJTIDENTIFIER = 5;
+  public int JJTINTVALUE = 6;
+  public int JJTREALVALUE = 7;
+  public int JJTWHILESTMT = 8;
+  public int JJTDOWHILESTMT = 9;
+  public int JJTIFSTMT = 10;
+  public int JJTFORSTMT = 11;
+  public int JJTPARENTHESES = 12;
+  public int JJTNOT = 13;
+  public int JJTMINUS = 14;
+  public int JJTMULTI = 15;
+  public int JJTDIVISION = 16;
+  public int JJTADDITION = 17;
+  public int JJTSOUSTRACTION = 18;
+  public int JJTCOMPARE = 19;
+  public int JJTLOGIC = 20;
 
 
   public String[] jjtNodeName = {
     "Program",
     "void",
     "AssignStmt",
+    "FunctionStmt",
+    "ReturnStmt",
     "Identifier",
     "IntValue",
     "RealValue",
     "WhileStmt",
-    "WhileCond",
     "DoWhileStmt",
     "IfStmt",
     "ForStmt",
@@ -48,4 +50,4 @@ public interface ParserTreeConstants
     "Logic",
   };
 }
-/* JavaCC - OriginalChecksum=566b158fde0a5e65507baf10ffa511f4 (do not edit this line) */
+/* JavaCC - OriginalChecksum=4eae49253ada58af16506d82fbbf4c33 (do not edit this line) */

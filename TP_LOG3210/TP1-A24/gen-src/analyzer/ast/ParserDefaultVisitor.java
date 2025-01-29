@@ -15,6 +15,12 @@ public class ParserDefaultVisitor implements ParserVisitor{
   public Object visit(ASTAssignStmt node, Object data){
     return defaultVisit(node, data);
   }
+  public Object visit(ASTFunctionStmt node, Object data){
+    return defaultVisit(node, data);
+  }
+  public Object visit(ASTReturnStmt node, Object data){
+    return defaultVisit(node, data);
+  }
   public Object visit(ASTIdentifier node, Object data){
     return defaultVisit(node, data);
   }
@@ -25,9 +31,6 @@ public class ParserDefaultVisitor implements ParserVisitor{
     return defaultVisit(node, data);
   }
   public Object visit(ASTWhileStmt node, Object data){
-    return defaultVisit(node, data);
-  }
-  public Object visit(ASTWhileCond node, Object data){
     return defaultVisit(node, data);
   }
   public Object visit(ASTDoWhileStmt node, Object data){
@@ -67,4 +70,4 @@ public class ParserDefaultVisitor implements ParserVisitor{
     return defaultVisit(node, data);
   }
 }
-/* JavaCC - OriginalChecksum=401be5bac1cd5be71cdade7404b5573d (do not edit this line) */
+/* JavaCC - OriginalChecksum=d47fec14e15edc8c3ddad96f80d62456 (do not edit this line) */
