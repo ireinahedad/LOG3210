@@ -1,9 +1,11 @@
   Program
    WhileStmt
-    IntValue
-    AssignStmt
-     Identifier
+    WhileCond
      IntValue
-    AssignStmt
-     Identifier
-     IntValue
+    WhileBlock
+     AssignStmt
+      Identifier
+      IntValue
+     AssignStmt
+      Identifier
+      IntValue

@@ -245,7 +245,7 @@ void RealValue() : { Token t;}
 }
 
 // 2.1
-
+/*
 void WhileStmt() : { Token t; }
 {
     <WHILE> <LPAREN> Expr() <RPAREN>
@@ -260,15 +260,49 @@ void DoWhileStmt() : { Token t; }
     Block()
     <RACC> <WHILE> <LPAREN> Expr() <RPAREN>
 }
+*/
+
+void WhileStmt() : {}
+{
+    <WHILE> <LPAREN> Expr() #WhileCond <RPAREN> ( (<LACC> Block() <RACC>) | Stmt() ) #WhileBlock
+}
+
+void DoWhileStmt() : {}
+{
+    <DO> <LACC> Block() #WhileBlock <RACC> <WHILE> <LPAREN> Expr() #WhileCond <RPAREN>
+}
+
+void IfStmt(): {}
+{
+    <IF> IfCond() IfBlock() [ LOOKAHEAD(<ELSE>) ElseBlock() ]
+}
+
+void IfCond(): {}
+{
+    <LPAREN> Expr() <RPAREN>
+}
+
+void IfBlock(): {}
+{
+    <LACC> Block() <RACC> | Stmt()
+}
+
+void ElseBlock(): {}
+{
+    <ELSE> (<LACC> Block() <RACC> | Stmt())
+}
+
+
 
 // 2.2
+/*
 void IfStmt(): {}
 {
     <IF> <LPAREN> Expr() <RPAREN> (<LACC> Block() <RACC> | Stmt())
     [LOOKAHEAD(2) <ELSE> (<LACC> Block() <RACC> | Stmt())] <SEMICOLON>
 }
 
-
+*/
 // 2.3
 void ForStmt(): {}
 {

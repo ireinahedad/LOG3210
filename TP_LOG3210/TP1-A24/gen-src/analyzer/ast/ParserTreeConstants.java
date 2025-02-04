@@ -12,18 +12,23 @@ public interface ParserTreeConstants
   public int JJTINTVALUE = 6;
   public int JJTREALVALUE = 7;
   public int JJTWHILESTMT = 8;
-  public int JJTDOWHILESTMT = 9;
-  public int JJTIFSTMT = 10;
-  public int JJTFORSTMT = 11;
-  public int JJTPARENTHESES = 12;
-  public int JJTNOT = 13;
-  public int JJTMINUS = 14;
-  public int JJTMULTI = 15;
-  public int JJTDIVISION = 16;
-  public int JJTADDITION = 17;
-  public int JJTSOUSTRACTION = 18;
-  public int JJTCOMPARE = 19;
-  public int JJTLOGIC = 20;
+  public int JJTWHILECOND = 9;
+  public int JJTWHILEBLOCK = 10;
+  public int JJTDOWHILESTMT = 11;
+  public int JJTIFSTMT = 12;
+  public int JJTIFCOND = 13;
+  public int JJTIFBLOCK = 14;
+  public int JJTELSEBLOCK = 15;
+  public int JJTFORSTMT = 16;
+  public int JJTPARENTHESES = 17;
+  public int JJTNOT = 18;
+  public int JJTMINUS = 19;
+  public int JJTMULTI = 20;
+  public int JJTDIVISION = 21;
+  public int JJTADDITION = 22;
+  public int JJTSOUSTRACTION = 23;
+  public int JJTCOMPARE = 24;
+  public int JJTLOGIC = 25;
 
 
   public String[] jjtNodeName = {
@@ -36,8 +41,13 @@ public interface ParserTreeConstants
     "IntValue",
     "RealValue",
     "WhileStmt",
+    "WhileCond",
+    "WhileBlock",
     "DoWhileStmt",
     "IfStmt",
+    "IfCond",
+    "IfBlock",
+    "ElseBlock",
     "ForStmt",
     "Parentheses",
     "Not",
@@ -50,4 +60,4 @@ public interface ParserTreeConstants
     "Logic",
   };
 }
-/* JavaCC - OriginalChecksum=4eae49253ada58af16506d82fbbf4c33 (do not edit this line) */
+/* JavaCC - OriginalChecksum=7d7a274f7a1c4f8c8024eb9f6f338ded (do not edit this line) */
