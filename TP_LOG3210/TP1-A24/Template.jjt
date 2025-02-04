@@ -165,21 +165,16 @@ void Block() #void : { }
 
 void Stmt() #void : { }
 {
-    LOOKAHEAD(3)AssignStmt() <SEMICOLON> |
+    LOOKAHEAD(2) ReturnStmt() |
+    AssignStmt() <SEMICOLON> |
     WhileStmt() |
     DoWhileStmt() <SEMICOLON> |
     IfStmt() |
     FunctionStmt() |
     ForStmt()
+
 }
 
-void Content() #void : { }
-{
-    WhileStmt() |
-    DoWhileStmt() <SEMICOLON> |
-    IfStmt() |
-    ForStmt()
-}
 
 void AssignStmt() : { Token t;}
 {
@@ -191,34 +186,27 @@ void Expr() #void : {}
 {
    // BasicExpr()
     LogicExpr()
+
 }
 
 void BasicExpr() #void : {}
 {
-	Identifier() |
-	IntValue() |
-    RealValue()
+	LOOKAHEAD(2) Identifier() |
+    	IntValue() | RealValue() |
+    	LOOKAHEAD(2) <LPAREN> Expr() <RPAREN>
 }
 
-void FunctionStmt() #void: {}
+void FunctionStmt() : {}
 {
-    <FUNC>#FunctionStmt Identifier() FunctionArgs()
-    <LACC>
-    (Stmt())? ReturnStmt()
-    <RACC>
+    <FUNC> FunctionArgs()
+    <LACC> Block() <RACC>
+
 }
 
 void FunctionArgs() #void : {}
 {
-<LPAREN> (ArgumentList() <RPAREN> | <RPAREN> )
+ Identifier() <LPAREN> (ArgumentList() <RPAREN> | <RPAREN> )
 }
-
-
-void ReturnStmt() #void: {}
-{
- (<RET>#ReturnStmt LogicExpr() <SEMICOLON>)?
-}
-
 
 
 void ArgumentList() #void : {}
@@ -227,44 +215,17 @@ void ArgumentList() #void : {}
 }
 
 
-
-
-void Identifier() : { Token t;}
+void ReturnStmt() #void: {}
 {
-	t = <IDENTIFIER> {jjtThis.setValue(t.image);}
+ <RET> (Expr())? #ReturnStmt <SEMICOLON>
 }
 
-void IntValue() : { Token t;}
-{
-	t = <INTEGER> {jjtThis.setValue(Integer.parseInt(t.image));}
-}
 
-void RealValue() : { Token t;}
-{
-	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
-}
 
-// 2.1
-/*
-void WhileStmt() : { Token t; }
-{
-    <WHILE> <LPAREN> Expr() <RPAREN>
-    (<LACC> Block() <RACC>
-    |
-    Stmt())
-}
-
-void DoWhileStmt() : { Token t; }
-{
-    <DO> <LACC>
-    Block()
-    <RACC> <WHILE> <LPAREN> Expr() <RPAREN>
-}
-*/
 
 void WhileStmt() : {}
 {
-    <WHILE> <LPAREN> Expr() #WhileCond <RPAREN> ( (<LACC> Block() <RACC>) | Stmt() ) #WhileBlock
+    <WHILE> <LPAREN> Expr() #WhileCond <RPAREN> ( (<LACC> Block() <RACC>) | Stmt())   #WhileBlock
 }
 
 void DoWhileStmt() : {}
@@ -293,16 +254,6 @@ void ElseBlock(): {}
 }
 
 
-
-// 2.2
-/*
-void IfStmt(): {}
-{
-    <IF> <LPAREN> Expr() <RPAREN> (<LACC> Block() <RACC> | Stmt())
-    [LOOKAHEAD(2) <ELSE> (<LACC> Block() <RACC> | Stmt())] <SEMICOLON>
-}
-
-*/
 // 2.3
 void ForStmt(): {}
 {
@@ -311,14 +262,13 @@ void ForStmt(): {}
 }
 
 // 2.4
+
 void ParenthesisExpr() #void: {}
 {
-    <LPAREN> LogicExpr()#Parentheses <RPAREN> |
-    BasicExpr()
+   LOOKAHEAD(2) <LPAREN> LogicExpr() <RPAREN> |
+   BasicExpr()
 
 }
-
-
 
 void NotExpr() #void: {}
 {
@@ -339,7 +289,7 @@ void MulExpr() #void: {}
 
 void DivExpr() #void: {}
 {
-    (MulExpr() (<DIV> MulExpr())*)#Division(>1)
+    (MulExpr() (<DIV> MulExpr())*)#Multi(>1)
 }
 
 void AddExpr() #void : {}
@@ -349,7 +299,7 @@ void AddExpr() #void : {}
 
 void SubExpr() #void : {}
 {
-    (AddExpr() (<MINUS> AddExpr())*)#Soustraction(>1)
+    (AddExpr() (<MINUS> AddExpr())*)#Addition(>1)
 }
 
 void CompareExpr() #void: {}
@@ -361,4 +311,20 @@ void LogicExpr() #void: {}
 {
     (CompareExpr() (<LOGIC> CompareExpr())?)#Logic(>1)
 
+}
+
+
+void Identifier() : { Token t;}
+{
+	t = <IDENTIFIER> {jjtThis.setValue(t.image);}
+}
+
+void IntValue() : { Token t;}
+{
+	t = <INTEGER> {jjtThis.setValue(Integer.parseInt(t.image));}
+}
+
+void RealValue() : { Token t;}
+{
+	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
 }

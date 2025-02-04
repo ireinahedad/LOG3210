@@ -1,6 +1,6 @@
   Program
    FunctionStmt
-   Identifier
-   Identifier
-   ReturnStmt
-   IntValue
+    Identifier
+    Identifier
+    ReturnStmt
+     IntValue

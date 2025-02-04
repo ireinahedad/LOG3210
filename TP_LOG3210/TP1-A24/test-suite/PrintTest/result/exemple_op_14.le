@@ -2,15 +2,13 @@
    AssignStmt
     Identifier
     Compare
-     Parentheses
-      Addition
+     Addition
+      Identifier
+      Multi
        Identifier
-       Multi
-        Identifier
-        Identifier
-     Parentheses
-      Soustraction
-       Division
-        Identifier
-        Identifier
        Identifier
+     Addition
+      Multi
+       Identifier
+       Identifier
+      Identifier

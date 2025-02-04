@@ -2,8 +2,7 @@
    AssignStmt
     Identifier
     Multi
-     Parentheses
-      Addition
-       IntValue
-       IntValue
+     Addition
+      IntValue
+      IntValue
      IntValue

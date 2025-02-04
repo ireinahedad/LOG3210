@@ -1,8 +1,8 @@
   Program
    AssignStmt
     Identifier
-    Soustraction
-     Division
+    Addition
+     Multi
       IntValue
       IntValue
      IntValue

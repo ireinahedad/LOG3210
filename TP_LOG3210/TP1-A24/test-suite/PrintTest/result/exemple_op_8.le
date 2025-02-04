@@ -3,7 +3,7 @@
     Identifier
     Addition
      IntValue
-     Division
+     Multi
       Not
        Identifier
       IntValue

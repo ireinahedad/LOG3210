@@ -21,15 +21,6 @@ public class ParserDefaultVisitor implements ParserVisitor{
   public Object visit(ASTReturnStmt node, Object data){
     return defaultVisit(node, data);
   }
-  public Object visit(ASTIdentifier node, Object data){
-    return defaultVisit(node, data);
-  }
-  public Object visit(ASTIntValue node, Object data){
-    return defaultVisit(node, data);
-  }
-  public Object visit(ASTRealValue node, Object data){
-    return defaultVisit(node, data);
-  }
   public Object visit(ASTWhileStmt node, Object data){
     return defaultVisit(node, data);
   }
@@ -57,9 +48,6 @@ public class ParserDefaultVisitor implements ParserVisitor{
   public Object visit(ASTForStmt node, Object data){
     return defaultVisit(node, data);
   }
-  public Object visit(ASTParentheses node, Object data){
-    return defaultVisit(node, data);
-  }
   public Object visit(ASTNot node, Object data){
     return defaultVisit(node, data);
   }
@@ -69,13 +57,7 @@ public class ParserDefaultVisitor implements ParserVisitor{
   public Object visit(ASTMulti node, Object data){
     return defaultVisit(node, data);
   }
-  public Object visit(ASTDivision node, Object data){
-    return defaultVisit(node, data);
-  }
   public Object visit(ASTAddition node, Object data){
-    return defaultVisit(node, data);
-  }
-  public Object visit(ASTSoustraction node, Object data){
     return defaultVisit(node, data);
   }
   public Object visit(ASTCompare node, Object data){
@@ -84,5 +66,14 @@ public class ParserDefaultVisitor implements ParserVisitor{
   public Object visit(ASTLogic node, Object data){
     return defaultVisit(node, data);
   }
+  public Object visit(ASTIdentifier node, Object data){
+    return defaultVisit(node, data);
+  }
+  public Object visit(ASTIntValue node, Object data){
+    return defaultVisit(node, data);
+  }
+  public Object visit(ASTRealValue node, Object data){
+    return defaultVisit(node, data);
+  }
 }
-/* JavaCC - OriginalChecksum=ea841f27a41931eb7b8dd5bff4ed2ee3 (do not edit this line) */
+/* JavaCC - OriginalChecksum=d3d24bcfd08c9f8151874dfcdba7f6ef (do not edit this line) */
