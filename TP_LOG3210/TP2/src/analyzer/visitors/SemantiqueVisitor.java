@@ -162,31 +162,70 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     }
 
+
     @Override
     public Object visit(ASTFunctionStmt node, Object data) {
+        this.FUNC++;
+
+        Object child = node.jjtGetChild(1);
+        String functionName = "";
+        if (child instanceof ASTIdentifier) {
+            ASTIdentifier functionNameNode = (ASTIdentifier) child;
+        }
+
+        for (int i = 2; i < node.jjtGetNumChildren() - 1; i++) {
+            // Visit each parameter declaration
+            node.jjtGetChild(i).jjtAccept(this, data);
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public Object visit(ASTFunctionBlock node, Object data) {
         // TODO
-        String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-        DataStruct d = new DataStruct();
-        node.jjtGetChild(1).jjtAccept(this, d);
-        //Invalid type in assignation of Identifier b
-        if (d.type != SymbolTable.get(varName)) {
-            throw new SemantiqueError(String.format("Invalid type in assignation of Identifier %s", varName));
+        node.childrenAccept(this, data);
+        return null;
+
+    }
+
+    //LAST FUNCTION TO MAKE WORK
+    @Override
+    public Object visit(ASTReturnStmt node, Object data) {
+        // Retrieve the function's expected return type from the data
+        VarType functionReturnType = (VarType) data;
+        System.out.println("goes in return statement: ");
+        System.out.println("Expected function return type: " + functionReturnType);
+
+
+        // Check if there's an expression in the return statement
+        if (node.jjtGetNumChildren() > 0) {
+
+            DataStruct returnData = new DataStruct();
+            node.jjtGetChild(0).jjtAccept(this, returnData);
+            System.out.println("Actual return expression type: " + returnData.type);
+
+
+            if (returnData.type != functionReturnType) {
+                throw new SemantiqueError("Return type does not match function type");
+            }
+        } else {
+            // If no expression is present, ensure the function's return type is void
+            /*
+            if (functionReturnType != VarType.VOID) {
+                throw new SemantiqueError("Function is expected to return a value, but no return value is provided");
+            }
+
+             */
         }
 
         return null;
     }
 
-    @Override
-    public Object visit(ASTFunctionBlock node, Object data) {
-        // TODO
-        return null;
-    }
 
-    @Override
-    public Object visit(ASTReturnStmt node, Object data) {
-        // TODO
-        return null;
-    }
+
+
 
     // On doit vérifier que le type de la variable est compatible avec celui de l'expression.
     @Override
@@ -195,7 +234,7 @@ public class SemantiqueVisitor implements ParserVisitor {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
         DataStruct d = new DataStruct();
         node.jjtGetChild(1).jjtAccept(this, d);
-        //Invalid type in assignation of Identifier b
+
         if (d.type != SymbolTable.get(varName)) {
             throw new SemantiqueError(String.format("Invalid type in assignation of Identifier %s", varName));
         }
