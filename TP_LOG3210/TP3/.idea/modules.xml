@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/GUIParsing/GUIParsing.iml" filepath="$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/GUIParsing/GUIParsing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/JJTreeExamples/JJTreeExamples.iml" filepath="$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/JJTreeExamples/JJTreeExamples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TP3.iml" filepath="$PROJECT_DIR$/.idea/TP3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP3-H24/TP3-H24.iml" filepath="$PROJECT_DIR$/TP3-H24/TP3-H24.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/examples.iml" filepath="$PROJECT_DIR$/TP3-H24/libs/javacc-7.0.2/examples/examples.iml" />
+    </modules>
+  </component>
+</project>
